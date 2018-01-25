@@ -11,7 +11,7 @@
     "koa-router": "^7.3.0",
     "koa2-cors": "^2.0.5",
     "mockjs": "^1.0.1-beta3",
-    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-quill": "^1.2.3",
