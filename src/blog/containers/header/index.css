@@ -1,0 +1,24 @@
+.custom-header{
+    position: relative;
+    background: '#fff';
+    padding:0 80px;
+}
+
+.slider-trigger{
+    font-size: 15px;
+    color:whitesmoke;
+    position: absolute;
+    left:5px;
+    top:25px;
+    cursor: pointer;
+}
+
+
+.menu-item-nav{
+    width: 200px;
+    text-align: center
+}
+
+.header .menu-item-nav:hover{
+    border-bottom:white 5px solid 
+}

@@ -1,0 +1,72 @@
+@keyframes i {
+    0% {
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+        opacity: 0
+    }
+    to {
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+.article-list-item-card {
+    margin-bottom: 18px;
+    padding: 18px 25px 15px;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #aaa;
+    transition: box-shadow .3s ease-in;
+}
+
+.article-list-item-card:hover {
+    box-shadow: 0 0 15px #333;
+}
+
+.zoomIn {
+    -webkit-animation-name: I;
+    animation-name: I;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.article-list-item-card-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.article-list-item-card-metainfo {
+    margin-bottom: 10px;
+}
+
+.article-list-item-card-label {
+    display: inline-block;
+    padding: 0px 4px;
+    margin-right: 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.time {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.category {
+    cursor: pointer;
+    background-color: rgb(255, 85, 0);
+}
+
+.tag {
+    cursor: pointer;
+    background-color: rgb(157, 255, 0);
+}

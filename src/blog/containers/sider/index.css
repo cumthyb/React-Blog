@@ -1,0 +1,26 @@
+
+#sider-card {
+    width: "100%";
+    background: none;
+}
+
+.sider-log img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform .5s;
+    margin: 0 auto;
+}
+
+.sider-log img:hover {
+    transform: rotateZ(360deg);
+}
+
+.ant-card-meta-detail {
+    color: white
+}
+
+.card-description{
+    color: whitesmoke;
+    text-align: center;
+}

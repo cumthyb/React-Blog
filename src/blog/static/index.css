@@ -1,0 +1,6 @@
+@import '~antd/dist/antd.css';
+
+html,body,div,img,p,span,ul,li,h1,h2,h3,h4,h5{
+    padding:0;
+    margin: 0;
+}

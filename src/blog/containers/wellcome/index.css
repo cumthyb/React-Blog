@@ -1,0 +1,60 @@
+.home-container {
+    height: 100%;
+    width: 100%;
+}
+
+.home-container-left {
+    height: 100%;
+    width: 100%;
+    background: hsla(0, 0%, 100%, 0.7) url("./bg.jpg") no-repeat 50%;
+    background-size: 100% 100%;
+    transition: width .3s;
+    opacity: 0.2;
+}
+
+.log {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    justify-content: center;
+}
+
+.log img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform .5s;
+    margin:0 auto;
+}
+
+.log img:hover {
+    transform: rotateZ(360deg);
+}
+
+.home-container-right{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    justify-content: center;
+}
+
+.home-container-right .navitem{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    transition: background .3s;
+}
+.home-container-right .navitem:hover{
+    background-color: lightslategray;
+    cursor: pointer;
+}

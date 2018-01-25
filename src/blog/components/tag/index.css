@@ -1,0 +1,18 @@
+.tagcard-container{
+    box-shadow: 0 0 5px #aaa;
+    margin: 5px 10px;
+    min-height: 500px;
+    background-color: #fff;
+}
+.tagcard-title{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    border-bottom: 1px solid rgba(0,0,0,.65);
+}
+
+.tagcard-list{
+    padding:10px;
+}
