@@ -14,3 +14,10 @@ export function turnpage(currentpage){
         currentpage
     }
 }
+
+export function changeAdminAccess(assessToAdmin){
+    return{
+        type:actionTypes.ChangeAdminAccess,
+        assessToAdmin:assessToAdmin.assessToAdmin
+    }
+}

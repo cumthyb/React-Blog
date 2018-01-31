@@ -1,18 +1,29 @@
 import React from 'react'
 import { Modal, Button } from 'antd';
+import { Form, Icon, Input, Checkbox,message } from 'antd';
+import axios from 'axios';
+import { CONFIG } from '../../../static/dbconfig'
+import './index.less'
+import { connect } from 'react-redux';
+import {changeAdminAccess} from '../../../redux/actions/index'
+
+const FormItem = Form.Item;
 
 class FormLogin extends React.Component {
-
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             loading: props.loading,
-            visible: props.visible,
+            visible: props.visible
         }
+        this._isfirst = 1;
     }
 
     handleOk = () => {
-        console.log("Click OK")
+
+        this._loginCheck()
+
+        console.log("登陆验证")
         this.setState({
             loading: true
         });
@@ -24,39 +35,108 @@ class FormLogin extends React.Component {
         }, 3000);
     }
 
-    handleCancel = () => {
-        console.log("Click Cancle")
-
+    handleCancel() {
         this.setState({
             visible: false
         });
+        console.log("取消登陆")
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            loading: nextProps.loading,
-            visible: nextProps.visible
+
+    _loginCheck = () => {
+
+        var That=this;
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                var user = {
+                    username: values.userName,
+                    password: values.password,
+                }
+                const url = `${CONFIG.server}/api/login`
+                axios.post(url, user)
+                    .then(function(response) {
+                        if(response.data.status==-1){
+                            message.info(response.data.msg);
+                        }
+                        else{
+                            message.info("登陆成功");
+                            sessionStorage.setItem('__token__', response.data.token);
+                            sessionStorage.setItem('__username__', response.data.username);
+                            That.props.changeAccess({
+                                assessToAdmin:true
+                            })
+                        }
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            }
         });
     }
 
-    render() {
-        console.log(this.state)
-        const { visible, loading } = this.state;
-        return (
-            <Modal cancelText="取消" okText="登陆" visible={ visible } title="Title" onOk={ this.handleOk.bind(this) } onCancel={ this.handleCancel.bind(this) } 
-            // footer={ [<Button key="back" onClick={ this.handleCancel.bind(this) }>Return</Button>,
-            // <Button key="submit" type="primary" loading={ loading } onClick={ this.handleOk.bind(this) }> Submit </Button>,] }
-            >
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-            </Modal>
+    componentWillReceiveProps(nextproops) {
+        if (this._isfirst % 2 === 1) {
+            this.setState({
+                visible: nextproops.visible
+            })
+        }
+        this._isfirst++;
+    }
 
+    render() {
+        const {getFieldDecorator} = this.props.form;
+        const {visible, loading} = this.state;
+        return (
+            <Modal style={ { textAlign: "center" } } cancelText="取消" okText="登陆" visible={ visible } title="管理端登陆验证" onOk={ this.handleOk.bind(this) } onCancel={ this.handleCancel.bind(this) }>
+              <Form onSubmit={ this.handleSubmit } className="login-form">
+                <FormItem>
+                  { getFieldDecorator('userName', {
+                        rules: [{
+                            required: true,
+                            message: 'Please input your username!'
+                        }],
+                    })(
+                        <Input prefix={ <Icon type="user" style={ { color: 'rgba(0,0,0,.25)' } } /> } placeholder="Username" />
+                    ) }
+                </FormItem>
+                <FormItem>
+                  { getFieldDecorator('password', {
+                        rules: [{
+                            required: true,
+                            message: 'Please input your Password!'
+                        }],
+                    })(
+                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> } type="password" placeholder="Password" />
+                    ) }
+                </FormItem>
+                <FormItem>
+                  { getFieldDecorator('remember', {
+                        valuePropName: 'checked',
+                        initialValue: true,
+                    })(
+                        <Checkbox>Remember me</Checkbox>
+                    ) }
+                  <a className="login-form-forgot" href="">Forgot password</a> Or <a href="">register now!</a>
+                </FormItem>
+              </Form>
+            </Modal>
             );
     }
 }
 
 
-export default FormLogin;
+
+const UserLoginFrom = Form.create()(FormLogin);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      changeAccess: (assessToAdmin) => {
+        dispatch(changeAdminAccess(assessToAdmin))
+      }
+    }
+  }
+
+
+export default connect(null, mapDispatchToProps)(UserLoginFrom) ;
+

@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { togglesider } from "../../redux/actions/index"
 import "./index.css"
-import FormLogin from '../management/login/index'
+import UserLoginFrom from '../management/login/index'
 const {Header} = Layout;
 
 class HeaderCustom extends React.Component {
   constructor() {
     super();
     this.sidercollapsed = false;
-    this.state={
+    this.state = {
       loading: false,
       visible: false
     }
-
   }
 
   onToggle = () => {
@@ -25,14 +24,16 @@ class HeaderCustom extends React.Component {
     );
   }
 
-  onLogin=()=>{
+  onLogin = () => {
     console.log("Click Login")
     this.setState({
-      visible: true,
+      visible: true
     });
+    console.log(this.state);
   }
 
   render() {
+    var display=this.props.adminAccess?"inline":"none";
     return (
       <Header className="custom-header" style={ { background: '#fff', padding: 0 } }>
         { /* <Icon className="slider-trigger" type={ 'menu-unfold' } onClick={ this.onToggle } /> */ }
@@ -49,7 +50,8 @@ class HeaderCustom extends React.Component {
           <Menu.Item key="4" className="menu-item-nav">
             <Link to={ '/main/about' }><span>关于</span></Link>
           </Menu.Item>
-          <Menu.Item key="5" className="menu-item-nav" style={{display:"none"}}>
+          {/* <Menu.Item key="5" className="menu-item-nav" style={ { display:{display}} }> */}
+          <Menu.Item key="5" className="menu-item-nav" style={ { display:display} }>
             <Link to={ '/main/management' }><span>管理端</span></Link>
           </Menu.Item>
           <Menu.Item key="6" style={ { lineHeight: '64px', position: "absolute", right: '80px', top: "-65px" } }>>
@@ -60,35 +62,21 @@ class HeaderCustom extends React.Component {
             </Link>
           </Menu.Item>
           <Menu.Item key="7" className="" style={ { lineHeight: '64px', position: "absolute", right: '0px', top: "0px" } }>
-            {/* <Link to="/management/login"> */}
-            <div>
-              
-            </div>
-            <span onClick={this.onLogin.bind(this)}> <Icon type="user" style={ { fontSize: 16, color: '#1DA57A' } }/>{ this.props.username } </span>
-            <FormLogin visible={this.state.visible} loading={this.state.loading}></FormLogin>
-           
-            {/* </Link> */}
+            <span onClick={ this.onLogin }> <Icon type="user" style={ { fontSize: 16, color: '#1DA57A' } }/>{ this.props.username } </span>
+            <UserLoginFrom visible={ this.state.visible } loading={ this.state.loading }></UserLoginFrom>
           </Menu.Item>
         </Menu>
       </Header>
       );
   }
-
 }
 
 const mapStateToProps = (state) => {
+  var adminAccess = state.reducer_login.adminAccess;
+  console.log("管理端开启:" + adminAccess);
   return {
-    iscollapsed: state.iscollapsed
+    adminAccess: adminAccess
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggle: (collapsed) => {
-      dispatch(togglesider(collapsed))
-    }
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderCustom);
+export default connect(mapStateToProps, null)(HeaderCustom);
