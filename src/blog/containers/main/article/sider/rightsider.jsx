@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CategoryCard from "../../../components/category/index.jsx"
-import TagCard from "../../../components/tag/index.jsx"
+import CategoryCard from "../../../../components/category/index.jsx"
+import TagCard from "../../../../components/tag/index.jsx"
 
 class RightSider extends Component {
 

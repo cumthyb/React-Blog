@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Pagination } from 'antd';
-import { turnpage } from "../../../redux/actions/index";
+import { turnpage } from "../../../../redux/actions/index";
 import { connect } from 'react-redux'
 import "../index.css"
 

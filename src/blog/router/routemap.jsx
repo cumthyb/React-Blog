@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //import createBrowserHistory from 'history/createBrowserHistory';
 
-import AboutMe from '../containers/aboutme/index';
-import Article from '../containers/article/index';
-import Home from '../containers/home/index';
-import Projects from '../containers/project/index';
-import NotFound from '../containers/404/index';
-import WellCome from "../containers/wellcome/index"
+import HeaderCustom from '../containers/header/index.jsx';
+import FooterCustom from '../containers/footer/index.jsx';
+import Main from '../containers/main/index.jsx';
+import Management from '../containers/management/index.jsx';
+import NotFound from '../containers/404/index.jsx'
+
+const Content=Layout.Content;
 
 //const history = createBrowserHistory();
-
 class RouteMap extends Component {
 
   render() {
     return (
       //history={this.props.history}
-      <Router >
-        <Switch>
-          <Route exact path="/" component={WellCome}/>
-          <Route path="/home" component={Home}/>
-          <Route path="/articles" component={Article}/>
-          <Route path="/projects" component={Projects}/>
-          <Route path="/about" component={AboutMe}/>
-          <Route component={NotFound}/>
-        </Switch>
+
+      <Router>
+        <Layout className="home-container-layout" style={ { height: '100%', width: '100%', overflow: 'auto' } }>
+          <HeaderCustom></HeaderCustom>
+          <Content>
+            <Switch>
+              <Route exact path="/" component={ Main } />
+              <Route path="/main" component={ Main } />
+              <Route path="/management" component={ Management } />
+              <Route component={ NotFound } />
+            </Switch>
+          </Content>
+          <FooterCustom></FooterCustom>
+        </Layout>
       </Router>
-    );
+
+      );
   }
 }
 

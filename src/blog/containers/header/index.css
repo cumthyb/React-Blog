@@ -1,7 +1,6 @@
 .custom-header{
     position: relative;
-    background: '#fff';
-    padding:0 80px;
+
 }
 
 .slider-trigger{
@@ -15,7 +14,7 @@
 
 
 .menu-item-nav{
-    width: 200px;
+    width: 240px;
     text-align: center
 }
 

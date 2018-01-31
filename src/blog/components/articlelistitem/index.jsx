@@ -25,6 +25,7 @@ class ArticleListItem extends Component {
           { tags.map((tag, index) => {
               return <span className="article-list-item-card-label tag" key={ index }>{ tag }</span>
             }) }
+            <Icon type="eye-o" /><span>100</span>
         </div>
         <div className="article-list-item-card-desc">
           { this.props.article.desc }

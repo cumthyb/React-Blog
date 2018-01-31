@@ -10,6 +10,8 @@ import { triggerAsyncId } from "async_hooks";
  * @param {String} author 作者
  * @param {Date} createtime 发表时间
  * @param {String} abstract 摘要
+ * @param {String} category 归类
+ * @param {String} tags 标签
  * @param {Number} viewers  阅读次数
  * @param {Boolean} ispublic 是否公开
  * @param {Array}  comments 评论
@@ -40,6 +42,16 @@ const ArticleSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    category: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    tags: {
+        type: String,
+        required: true,
+        trim: true
+    },
     viewers: {
         type: Number,
         default: 0
@@ -47,11 +59,11 @@ const ArticleSchema = new mongoose.Schema({
     ispublic: {
         type: Boolean,
         required: true,
-        default:true
+        default: true
     },
     comments: {
         type: Array,
-        default:[]
+        default: []
     },
     content: {
         type: String,

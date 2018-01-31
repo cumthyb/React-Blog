@@ -175,11 +175,13 @@ export default function(Router) {
     //文章发表
     router.post('/article/publish',
         async (ctx, next) => {
-            const {title, author, abstract, ispublic, content} = ctx.request.body;
+            const {title, author, abstract, category, tags, ispublic, content} = ctx.request.body;
             const article = {
                 title,
                 author,
                 abstract,
+                category,
+                tags,
                 ispublic,
                 content
             };
@@ -207,12 +209,14 @@ export default function(Router) {
     //文章修改
     router.post('/article/update',
         async (ctx, next) => {
-            const {id, title, author, abstract, ispublic, content} = ctx.request.body;
+            const {id, title, author, abstract, category, tags, ispublic, content} = ctx.request.body;
             const article = {
                 id,
                 title,
                 author,
                 abstract,
+                category,
+                tags,
                 ispublic,
                 content
             };

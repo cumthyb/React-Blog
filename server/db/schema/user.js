@@ -8,7 +8,7 @@ import db from '../dbconnection'
  * @param {Boolean} isAdmin 是否管理员
  * @param {String} password 密码
  * @param {String} token 认证
- * @param {String} create_time 创建日期
+ * @param {String} createtime 创建日期
  * */
 
 
@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    create_time: {
+    createtime: {
         type: Date,
         default: Date.now
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import ArticleArea from "./main/articlearea.jsx";
 import RightSider from "./sider/rightsider.jsx";
-import MockData from "../../mock/mock"
+import MockData from "../../../mock/mock"
 
 class Articles extends Component {
     constructor() {
@@ -30,10 +30,10 @@ class Articles extends Component {
         return (
             <div className="articles-container">
               <Row>
-                <Col xs={ 24 } sm={ 24 } md={ 20 }>
+                <Col xs={ 24 } sm={ 24 } md={ 18 }>
                 <ArticleArea articlelist={ articlelist } />
                 </Col>
-                <Col xs={ 0 } sm={ 0 } md={ 4 }>
+                <Col xs={ 0 } sm={ 0 } md={ 6 }>
                 <RightSider articlelist={ articlelist } />
                 </Col>
               </Row>

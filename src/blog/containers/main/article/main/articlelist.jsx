@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArticleListItem from "../../../components/articlelistitem/index.jsx"
+import ArticleListItem from "../../../../components/articlelistitem/index.jsx"
 
 
 class ArticleList extends Component {
