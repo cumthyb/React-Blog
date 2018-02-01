@@ -21,3 +21,11 @@ export function changeAdminAccess(assessToAdmin){
         assessToAdmin:assessToAdmin.assessToAdmin
     }
 }
+
+export function closeUserLoginForm(loginFormVisible){
+    return{
+        type:actionTypes.ChangeAdminAccess,
+        loginFormVisible
+    }
+}
+

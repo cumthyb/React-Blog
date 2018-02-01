@@ -8,12 +8,11 @@ import UserLoginFrom from '../management/login/index'
 const {Header} = Layout;
 
 class HeaderCustom extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.sidercollapsed = false;
     this.state = {
-      loading: false,
-      visible: false
+      visible: props.loginFormVisible
     }
   }
 
@@ -25,15 +24,21 @@ class HeaderCustom extends React.Component {
   }
 
   onLogin = () => {
-    console.log("Click Login")
     this.setState({
       visible: true
+    },()=>{
+      console.log("onLogin_state");
+      console.log(this.state);
     });
-    console.log(this.state);
+    
   }
 
   render() {
-    var display=this.props.adminAccess?"inline":"none";
+    console.log("render_state");
+    console.log(this.state);
+    
+    var display = this.props.adminAccess ? "inline" : "none";
+    var loginFormVisible = this.state.visible;
     return (
       <Header className="custom-header" style={ { background: '#fff', padding: 0 } }>
         { /* <Icon className="slider-trigger" type={ 'menu-unfold' } onClick={ this.onToggle } /> */ }
@@ -50,8 +55,8 @@ class HeaderCustom extends React.Component {
           <Menu.Item key="4" className="menu-item-nav">
             <Link to={ '/main/about' }><span>关于</span></Link>
           </Menu.Item>
-          {/* <Menu.Item key="5" className="menu-item-nav" style={ { display:{display}} }> */}
-          <Menu.Item key="5" className="menu-item-nav" style={ { display:display} }>
+          { /* <Menu.Item key="5" className="menu-item-nav" style={ { display:{display}} }> */ }
+          <Menu.Item key="5" className="menu-item-nav" style={ { display: display } }>
             <Link to={ '/main/management' }><span>管理端</span></Link>
           </Menu.Item>
           <Menu.Item key="6" style={ { lineHeight: '64px', position: "absolute", right: '80px', top: "-65px" } }>>
@@ -63,7 +68,7 @@ class HeaderCustom extends React.Component {
           </Menu.Item>
           <Menu.Item key="7" className="" style={ { lineHeight: '64px', position: "absolute", right: '0px', top: "0px" } }>
             <span onClick={ this.onLogin }> <Icon type="user" style={ { fontSize: 16, color: '#1DA57A' } }/>{ this.props.username } </span>
-            <UserLoginFrom visible={ this.state.visible } loading={ this.state.loading }></UserLoginFrom>
+            <UserLoginFrom visible={ loginFormVisible }></UserLoginFrom>
           </Menu.Item>
         </Menu>
       </Header>
@@ -73,9 +78,12 @@ class HeaderCustom extends React.Component {
 
 const mapStateToProps = (state) => {
   var adminAccess = state.reducer_login.adminAccess;
-  console.log("管理端开启:" + adminAccess);
+  var loginVisible = state.reducer_login.loginFormVisible;
+  //加入 key:(new Date()).getTime() 时间戳 每次传入的Props对象都不一样 组件都会重新渲染一次
   return {
-    adminAccess: adminAccess
+    adminAccess: adminAccess,
+    loginFormVisible: loginVisible,
+    key:(new Date()).getTime()
   }
 }
 

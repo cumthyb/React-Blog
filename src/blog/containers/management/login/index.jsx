@@ -5,7 +5,7 @@ import axios from 'axios';
 import { CONFIG } from '../../../static/dbconfig'
 import './index.less'
 import { connect } from 'react-redux';
-import {changeAdminAccess} from '../../../redux/actions/index'
+import {changeAdminAccess,closeUserLoginForm} from '../../../redux/actions/index'
 
 const FormItem = Form.Item;
 
@@ -13,33 +13,33 @@ class FormLogin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: props.loading,
             visible: props.visible
         }
         this._isfirst = 1;
     }
 
     handleOk = () => {
-
         this._loginCheck()
-
-        console.log("登陆验证")
         this.setState({
             loading: true
         });
         setTimeout(() => {
             this.setState({
-                loading: false,
                 visible: false
             });
         }, 3000);
+        this.props.changeLoginVisible({
+            loginFormVisible:false
+        })
     }
 
     handleCancel() {
         this.setState({
             visible: false
         });
-        console.log("取消登陆")
+        this.props.changeLoginVisible({
+            loginFormVisible:false
+        })
     }
 
 
@@ -88,7 +88,7 @@ class FormLogin extends React.Component {
         const {getFieldDecorator} = this.props.form;
         const {visible, loading} = this.state;
         return (
-            <Modal style={ { textAlign: "center" } } cancelText="取消" okText="登陆" visible={ visible } title="管理端登陆验证" onOk={ this.handleOk.bind(this) } onCancel={ this.handleCancel.bind(this) }>
+            <Modal style={ { textAlign: "center" } } destroyOnClose={true} cancelText="取消" okText="登陆" visible={ visible } title="管理端登陆验证" onOk={ this.handleOk.bind(this) } onCancel={ this.handleCancel.bind(this) }>
               <Form onSubmit={ this.handleSubmit } className="login-form">
                 <FormItem>
                   { getFieldDecorator('userName', {
@@ -133,6 +133,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
       changeAccess: (assessToAdmin) => {
         dispatch(changeAdminAccess(assessToAdmin))
+      },
+      changeLoginVisible:(loginFormVisible)=>{
+        dispatch(closeUserLoginForm(loginFormVisible))          
       }
     }
   }
