@@ -1,11 +1,11 @@
 import React from 'react'
 import { Modal, Button } from 'antd';
-import { Form, Icon, Input, Checkbox,message } from 'antd';
+import { Form, Icon, Input, Checkbox, message } from 'antd';
 import axios from 'axios';
 import { CONFIG } from '../../../static/dbconfig'
 import './index.less'
 import { connect } from 'react-redux';
-import {changeAdminAccess,closeUserLoginForm} from '../../../redux/actions/index'
+import { changeAdminAccess, closeUserLoginForm } from '../../../redux/actions/index'
 
 const FormItem = Form.Item;
 
@@ -16,6 +16,7 @@ class FormLogin extends React.Component {
             visible: props.visible
         }
         this._isfirst = 1;
+        this.props.onClose.bind(this);
     }
 
     handleOk = () => {
@@ -29,7 +30,7 @@ class FormLogin extends React.Component {
             });
         }, 3000);
         this.props.changeLoginVisible({
-            loginFormVisible:false
+            loginFormVisible: false
         })
     }
 
@@ -37,15 +38,13 @@ class FormLogin extends React.Component {
         this.setState({
             visible: false
         });
-        this.props.changeLoginVisible({
-            loginFormVisible:false
-        })
+        console.log(this.props.onClose)
+        this.props.onClose();
     }
-
 
     _loginCheck = () => {
 
-        var That=this;
+        var That = this;
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
@@ -56,15 +55,14 @@ class FormLogin extends React.Component {
                 const url = `${CONFIG.server}/api/login`
                 axios.post(url, user)
                     .then(function(response) {
-                        if(response.data.status==-1){
+                        if (response.data.status == -1) {
                             message.info(response.data.msg);
-                        }
-                        else{
+                        } else {
                             message.info("登陆成功");
                             sessionStorage.setItem('__token__', response.data.token);
                             sessionStorage.setItem('__username__', response.data.username);
                             That.props.changeAccess({
-                                assessToAdmin:true
+                                assessToAdmin: true
                             })
                         }
                     })
@@ -88,7 +86,8 @@ class FormLogin extends React.Component {
         const {getFieldDecorator} = this.props.form;
         const {visible, loading} = this.state;
         return (
-            <Modal style={ { textAlign: "center" } } destroyOnClose={true} cancelText="取消" okText="登陆" visible={ visible } title="管理端登陆验证" onOk={ this.handleOk.bind(this) } onCancel={ this.handleCancel.bind(this) }>
+            <Modal style={ { textAlign: "center" } } destroyOnClose={ true } cancelText="取消" okText="登陆" visible={ visible } title="管理端登陆验证" onOk={ this.handleOk.bind(this) }
+              onCancel={ this.handleCancel.bind(this) }>
               <Form onSubmit={ this.handleSubmit } className="login-form">
                 <FormItem>
                   { getFieldDecorator('userName', {
@@ -125,21 +124,15 @@ class FormLogin extends React.Component {
     }
 }
 
-
-
 const UserLoginFrom = Form.create()(FormLogin);
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      changeAccess: (assessToAdmin) => {
-        dispatch(changeAdminAccess(assessToAdmin))
-      },
-      changeLoginVisible:(loginFormVisible)=>{
-        dispatch(closeUserLoginForm(loginFormVisible))          
-      }
+        changeAccess: (assessToAdmin) => {
+            dispatch(changeAdminAccess(assessToAdmin))
+        }
     }
-  }
-
+}
 
 export default connect(null, mapDispatchToProps)(UserLoginFrom) ;
 

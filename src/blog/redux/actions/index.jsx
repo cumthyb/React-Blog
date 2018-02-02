@@ -1,31 +1,24 @@
 import * as actionTypes from "../actionTypes/index"
 
 
-export function togglesider(collapsed){
+export function togglesider(collapsed) {
     return {
-        type:actionTypes.TOGGLESIDER,
+        type: actionTypes.TOGGLESIDER,
         collapsed
     }
 }
 
-export function turnpage(currentpage){
+export function turnpage(currentpage) {
     return {
-        type:actionTypes.TurnPage,
+        type: actionTypes.TurnPage,
         currentpage
     }
 }
 
-export function changeAdminAccess(assessToAdmin){
-    return{
-        type:actionTypes.ChangeAdminAccess,
-        assessToAdmin:assessToAdmin.assessToAdmin
-    }
-}
-
-export function closeUserLoginForm(loginFormVisible){
-    return{
-        type:actionTypes.ChangeAdminAccess,
-        loginFormVisible
+export function changeAdminAccess(assessToAdmin) {
+    return {
+        type: actionTypes.ChangeAdminAccess,
+        assessToAdmin: assessToAdmin.assessToAdmin
     }
 }
 

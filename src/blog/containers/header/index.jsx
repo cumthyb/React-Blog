@@ -12,7 +12,7 @@ class HeaderCustom extends React.Component {
     super(props);
     this.sidercollapsed = false;
     this.state = {
-      visible: props.loginFormVisible
+      visible: false
     }
   }
 
@@ -26,17 +26,25 @@ class HeaderCustom extends React.Component {
   onLogin = () => {
     this.setState({
       visible: true
-    },()=>{
+    }, () => {
       console.log("onLogin_state");
       console.log(this.state);
     });
-    
+  }
+
+  onLoginClose = () => {
+    this.setState({
+      visible: false
+    }, () => {
+      console.log("onLogin_close");
+      console.log(this.state);
+    });
   }
 
   render() {
     console.log("render_state");
     console.log(this.state);
-    
+
     var display = this.props.adminAccess ? "inline" : "none";
     var loginFormVisible = this.state.visible;
     return (
@@ -68,7 +76,7 @@ class HeaderCustom extends React.Component {
           </Menu.Item>
           <Menu.Item key="7" className="" style={ { lineHeight: '64px', position: "absolute", right: '0px', top: "0px" } }>
             <span onClick={ this.onLogin }> <Icon type="user" style={ { fontSize: 16, color: '#1DA57A' } }/>{ this.props.username } </span>
-            <UserLoginFrom visible={ loginFormVisible }></UserLoginFrom>
+            <UserLoginFrom visible={ loginFormVisible } onClose={ this.onLoginClose.bind(this) }></UserLoginFrom>
           </Menu.Item>
         </Menu>
       </Header>
@@ -81,9 +89,7 @@ const mapStateToProps = (state) => {
   var loginVisible = state.reducer_login.loginFormVisible;
   //加入 key:(new Date()).getTime() 时间戳 每次传入的Props对象都不一样 组件都会重新渲染一次
   return {
-    adminAccess: adminAccess,
-    loginFormVisible: loginVisible,
-    key:(new Date()).getTime()
+    adminAccess: adminAccess
   }
 }
 

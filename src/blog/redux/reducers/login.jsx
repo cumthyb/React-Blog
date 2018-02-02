@@ -4,7 +4,7 @@ function reducer_login(state, action) {
     if (!state) {
         state = {
             adminAccess: false,
-            loginFormVisible:false
+            loginFormVisible: false
         }
     }
 
@@ -12,10 +12,6 @@ function reducer_login(state, action) {
         case actionTypes.ChangeAdminAccess:
             return Object.assign({}, state, {
                 adminAccess: action.assessToAdmin
-            });
-            case actionTypes.CloseUserLoginForm:
-            return Object.assign({}, state, {
-                loginFormVisible: action.loginFormVisible
             });
         default:
             return state;
