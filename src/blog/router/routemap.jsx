@@ -9,7 +9,7 @@ import Main from '../containers/main/index.jsx';
 import Management from '../containers/management/index.jsx';
 import NotFound from '../containers/404/index.jsx'
 
-const Content=Layout.Content;
+const Content = Layout.Content;
 
 //const history = createBrowserHistory();
 class RouteMap extends Component {

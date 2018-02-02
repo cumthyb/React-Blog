@@ -5,3 +5,7 @@
     min-height: 280px;
     overflow: auto
 }
+
+#content-container {
+    position: relative;
+}

@@ -45,7 +45,8 @@ class HeaderCustom extends React.Component {
     console.log("render_state");
     console.log(this.state);
 
-    var display = this.props.adminAccess ? "inline" : "none";
+    // var display = this.props.adminAccess ? "inline" : "none";
+    var display = "inline";
     var loginFormVisible = this.state.visible;
     return (
       <Header className="custom-header" style={ { background: '#fff', padding: 0 } }>
@@ -65,7 +66,7 @@ class HeaderCustom extends React.Component {
           </Menu.Item>
           { /* <Menu.Item key="5" className="menu-item-nav" style={ { display:{display}} }> */ }
           <Menu.Item key="5" className="menu-item-nav" style={ { display: display } }>
-            <Link to={ '/main/management' }><span>管理端</span></Link>
+            <Link to={ '/management' }><span>管理端</span></Link>
           </Menu.Item>
           <Menu.Item key="6" style={ { lineHeight: '64px', position: "absolute", right: '80px', top: "-65px" } }>>
             <Link to="/management/message">
