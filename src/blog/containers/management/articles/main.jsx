@@ -87,7 +87,7 @@ class ArticleMain extends Component {
     this.columns = [{
       title: '序号',
       dataIndex: 'index',
-      width: 200,
+      width: 100,
     }, {
       title: '标题',
       dataIndex: 'title',
@@ -123,7 +123,7 @@ class ArticleMain extends Component {
           </Button>
           <span style={ { marginLeft: 8 } }>{ hasSelected ? `已选择 ${selectedRowKeys.length} 项` : '' }</span>
         </div>
-        <Table rowSelection={ rowSelection } columns={ this.columns } dataSource={ this.state.data } />
+        <Table className="formTable" rowSelection={ rowSelection } columns={ this.columns } dataSource={ this.state.data } pagination={{ pageSize: 20 }} scroll={{ y: '100%' }}/>
       </div>
       );
   }

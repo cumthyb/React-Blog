@@ -8,3 +8,9 @@
 .col-id{
     display: none
 }
+
+
+.formTable th,td{
+    
+      text-align: center !important;
+    }
