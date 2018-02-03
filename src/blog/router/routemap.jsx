@@ -21,7 +21,7 @@ class RouteMap extends Component {
       <Router>
         <Layout className="home-container-layout" style={ { height: '100%', width: '100%', overflow: 'auto' } }>
           <HeaderCustom></HeaderCustom>
-          <Content>
+          <Content style={ { 'position': 'relative'}}>
             <Switch>
               <Route exact path="/" component={ Main } />
               <Route path="/main" component={ Main } />

@@ -4,8 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import './index.css';
 
 class RichTextEditor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             editorHtml: '',
             theme: 'snow'
@@ -14,10 +14,10 @@ class RichTextEditor extends Component {
     }
 
     handleChange(html) {
-        console.log(html);
         this.setState({
             editorHtml: html
         });
+        this.props.getHtml(html)
     }
 
     modules = {

@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose,{Schema} from "mongoose"
 import db from '../dbconnection'
 import { triggerAsyncId } from "async_hooks";
 
@@ -20,7 +20,7 @@ import { triggerAsyncId } from "async_hooks";
 
 const ArticleSchema = new mongoose.Schema({
     id: {
-        type: ObjectId,
+        type: Schema.Types.ObjectId,
     },
     title: {
         type: String,

@@ -1,5 +1,5 @@
 import UserModel from '../db/schema/user'
-import ArticleModel from '../db/schema/user'
+import ArticleModel from '../db/schema/article'
 import jwt from 'jsonwebtoken'
 
 export default function(Router) {
@@ -185,8 +185,9 @@ export default function(Router) {
                 ispublic,
                 content
             };
-            await UserModel(article).save()
+            await ArticleModel(article).save()
                 .then(product => {
+                    console.log("添加文章");
                     console.log(product);
                     ctx.body = {
                         status: 1,
@@ -198,7 +199,7 @@ export default function(Router) {
                     error => {
                         console.log(error);
                         ctx.body = {
-                            status: 1,
+                            status: -1,
                             msg: error.message
                         }
                     }
@@ -257,6 +258,39 @@ export default function(Router) {
                             ctx.body = {
                                 status: 1,
                                 msg: product.title + ' 删除成功!'
+                            }
+                        } else {
+                            console.log(product);
+                            ctx.body = {
+                                status: -1,
+                                msg: '文章不存在'
+                            }
+                        }
+                    }
+            )
+                .catch(error => {
+                    console.log(error);
+                    ctx.body = {
+                        status: -1,
+                        msg: error.message
+                    }
+                })
+        }
+    );
+
+
+    //文章查找 不返回content
+    router.post('/article/queryall',
+        async (ctx, next) => {
+            await ArticleModel.find({},{content:0})
+                .then(
+                    product => {
+                        if (product) {
+                            console.log(product);
+                            ctx.body = {
+                                status: 1,
+                                msg: ' 查询所有成功!',
+                                result:product
                             }
                         } else {
                             console.log(product);

@@ -1,0 +1,10 @@
+#article-form .ant-form-item-control{
+    width: 400px
+}
+
+.opera{
+    cursor: pointer;
+}
+.col-id{
+    display: none
+}

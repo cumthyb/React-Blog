@@ -63,8 +63,7 @@ class ArticleInfoFrom extends React.Component {
 
         return (
 
-            
-
+        
             <Form onSubmit={ this.handleSubmit.bind(this) } className="article-form">
               <FormItem {...formItemLayout} label="文章标题">
                 { getFieldDecorator('title', {
