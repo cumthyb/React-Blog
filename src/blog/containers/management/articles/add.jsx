@@ -115,7 +115,7 @@ class EditAtricle extends Component {
                             message: 'Please input your arctile_category!'
                         }],
                     })(
-                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> } type="password" placeholder="arctile_category" />
+                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> }  placeholder="arctile_category" />
                     ) }
                 </FormItem>
                 <FormItem label="文章标签" {...formItemLayout} validateStatus={ passwordError ? 'error' : '' } help={ passwordError || '' }>
@@ -125,7 +125,7 @@ class EditAtricle extends Component {
                             message: 'Please input your arctile_tag!'
                         }],
                     })(
-                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> } type="password" placeholder="arctile_tag" />
+                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> }  placeholder="arctile_tag" />
                     ) }
                 </FormItem>
                 <FormItem label="文章摘要" {...formItemLayout} validateStatus={ passwordError ? 'error' : '' } help={ passwordError || '' }>
@@ -135,7 +135,7 @@ class EditAtricle extends Component {
                             message: 'Please input your arctile_abstract!'
                         }],
                     })(
-                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> } type="password" placeholder="arctile_abstract" />
+                        <Input prefix={ <Icon type="lock" style={ { color: 'rgba(0,0,0,.25)' } } /> }  placeholder="arctile_abstract" />
                     ) }
                 </FormItem>
                 <FormItem label=" 是否公开" {...formItemLayout}>

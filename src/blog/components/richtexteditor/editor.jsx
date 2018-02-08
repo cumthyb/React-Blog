@@ -10,6 +10,7 @@ class RichTextEditor extends Component {
             editorHtml: '',
             theme: 'snow'
         }
+        this.refDom=null;
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -17,7 +18,8 @@ class RichTextEditor extends Component {
         this.setState({
             editorHtml: html
         });
-        this.props.getHtml(html)
+        this.props.getHtml(html);
+        console.log(this.refDom.getEditor().getFormat())
     }
 
     modules = {
@@ -91,7 +93,8 @@ class RichTextEditor extends Component {
     render() {
         return (
             <ReactQuill theme={ this.state.theme } onChange={ this.handleChange } value={ this.state.editorHtml } modules={ this.modules } formats={ this.formats } bounds={ '.app' }
-              placeholder={ "RichTextEditor---react-quill" } />
+              placeholder={ "RichTextEditor---react-quill" } 
+              ref={(node) => this.refDom = node}/>
             );
     }
 }

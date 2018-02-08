@@ -6,6 +6,7 @@ import Tags_M from './tags/index.jsx'
 import Categories_M from './categories/index.jsx'
 import ArticleEditor from './articles/add';
 import ArticleMain from './articles/main.jsx'
+import ArticleView from './articles/view';
 
 import './index.css';
 
@@ -37,10 +38,10 @@ class Management extends Component {
               <Link to={ `${root}/article` }>
               <Icon type="file-text" /><span>文章管理</span></Link>
             </Menu.Item>
-            <Menu.Item key="5">
+            {/* <Menu.Item key="5">
               <Link to={ `${root}/addarticle` }>
               <Icon type="file-text" /><span>添加文章</span></Link>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
         </Sider>
         <Layout style={ { padding: '0 24px 24px' } }>
@@ -55,8 +56,8 @@ class Management extends Component {
               <Route path={ `${root}/tag` } component={ Tags_M } />
               <Route path={ `${root}/category` } component={ Categories_M } />
               <Route path={ `${root}/article` } component={ ArticleMain } />
-              <Route path={ `${root}/addarticle` } component={ ArticleEditorCus } />
-              
+              <Route path={ `${root}/addarticle` } component={ ArticleEditorCus } />      
+              <Route path={ `${root}/viewarticle/:id` } component={ ArticleView } />                  
               <Route path={ `${root}/` } component={ ArticleMain } />
             </Switch>
           </Content>

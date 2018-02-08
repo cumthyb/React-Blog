@@ -278,11 +278,12 @@ export default function(Router) {
         }
     );
 
-
     //文章查找 不返回content
     router.post('/article/queryall',
         async (ctx, next) => {
-            await ArticleModel.find({},{content:0})
+            await ArticleModel.find({}, {
+                content: 0
+            })
                 .then(
                     product => {
                         if (product) {
@@ -290,7 +291,42 @@ export default function(Router) {
                             ctx.body = {
                                 status: 1,
                                 msg: ' 查询所有成功!',
-                                result:product
+                                result: product
+                            }
+                        } else {
+                            console.log(product);
+                            ctx.body = {
+                                status: -1,
+                                msg: '文章不存在'
+                            }
+                        }
+                    }
+            )
+                .catch(error => {
+                    console.log(error);
+                    ctx.body = {
+                        status: -1,
+                        msg: error.message
+                    }
+                })
+        }
+    );
+
+    //文章查找 ID 返回改文章所有信息
+    router.post('/article/queryID',
+        async (ctx, next) => {
+            const {id} = ctx.request.body;
+            await ArticleModel.findById({
+                _id: id
+            })
+                .then(
+                    product => {
+                        if (product) {
+                            console.log(product);
+                            ctx.body = {
+                                status: 1,
+                                msg: ' 查询ID为***的文章成功!',
+                                result: product
                             }
                         } else {
                             console.log(product);

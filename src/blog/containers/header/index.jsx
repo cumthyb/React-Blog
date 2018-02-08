@@ -42,9 +42,6 @@ class HeaderCustom extends React.Component {
   }
 
   render() {
-    console.log("render_state");
-    console.log(this.state);
-
     // var display = this.props.adminAccess ? "inline" : "none";
     var display = "inline";
     var loginFormVisible = this.state.visible;
